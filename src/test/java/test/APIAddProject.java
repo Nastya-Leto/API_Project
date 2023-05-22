@@ -20,7 +20,6 @@ import static specs.Specification.responseSpec;
 public class APIAddProject extends TestBase {
 
 
-
     @Test
     @Order(1)
     @Tags({
@@ -48,7 +47,7 @@ public class APIAddProject extends TestBase {
 
         );
 
-        step("Проверка создания проекта", () -> {
+        step("Проверка успешного создания проекта", () -> {
                     assertThat(addProjectResponseModel.getName()).isEqualTo(nameProject);
                     assertThat(addProjectResponseModel.getAnnouncement()).isEqualTo(AnnouncementProject);
                 }
@@ -86,7 +85,6 @@ public class APIAddProject extends TestBase {
         );
         suiteID = addSuiteResponseModel.getId();
     }
-
 
 
     @Test
@@ -132,7 +130,7 @@ public class APIAddProject extends TestBase {
 
         String getSectionsURL = format("/api/v2/get_sections/%s", projectId);
 
-        AddSuiteResponseModel addSuiteResponseModel = step("Получить список разделов", () ->
+        GetSectionsResponseModel getSectionsResponseModel = step("Получить список разделов", () ->
                 given(requestSpec)
                         .queryParam(getSectionsURL)
                         .queryParam("suite_id", suiteID)
@@ -140,10 +138,17 @@ public class APIAddProject extends TestBase {
                         .get()
                         .then()
                         .spec(responseSpec)
-                        .extract().as(AddSuiteResponseModel.class)
+                        .extract().as(GetSectionsResponseModel.class)
 
         );
-        sectionId = addSuiteResponseModel.getId();
+        // sectionId = getSectionsResponseModel.getId();
+
+        step("Проверка, что разделы существуют", () -> {
+
+                    assertThat(getSectionsResponseModel).isNotNull();
+
+                }
+        );
     }
 
 
@@ -206,9 +211,8 @@ public class APIAddProject extends TestBase {
     void GetCases() {
 
         String getCaseURL = format("/api/v2/get_cases/%s", caseProjectID);
-        //String getCaseURL = format("/api/v2/get_cases/34");
 
-        AddSuiteResponseModel addSuiteResponseModel = step("Создание тест кейса", () ->
+        GetListCasesResponseModel getListCaseResponseModel = step("Создание тест кейса", () ->
                 given(requestSpec)
                         .queryParam(getCaseURL)
                         .queryParam("suite_id", suiteProjectID)
@@ -216,9 +220,13 @@ public class APIAddProject extends TestBase {
                         .get()
                         .then()
                         .spec(responseSpec)
-                        .extract().as(AddSuiteResponseModel.class)
+                        .extract().as(GetListCasesResponseModel.class)
 
         );
+
+        step("Проверка, что тест-кейсы существуют", () ->
+                assertThat(getListCaseResponseModel).isNotNull());
+
     }
 
 
@@ -232,17 +240,28 @@ public class APIAddProject extends TestBase {
     @DisplayName("Получение информации по тест-кейсу")
     void GetCase() {
 
-        String getCaseURL = format("/api/v2/get_case/5");
+        String getCaseURL = ("/api/v2/get_case/5");
+        //Response responseInfoCase = apiRequests.makePostRequest("/api/users", body);
 
-        AddSuiteResponseModel addSuiteResponseModel = step("Создание тест кейса", () ->
+        GetInfoCaseResponseModel getInfoCaseResponseModel = step("Создание тест кейса", () ->
                 given(requestSpec)
                         .queryParam(getCaseURL)
                         .when()
                         .get()
                         .then()
                         .spec(responseSpec)
-                        .extract().as(AddSuiteResponseModel.class)
+                        .extract().as(GetInfoCaseResponseModel.class)
 
+        );
+
+        step("Проверка корректности информации о тест-кейсе", () -> {
+
+                    assertThat(getInfoCaseResponseModel).isNotNull();
+
+                   // assertThat(getInfoCaseResponseModel, matchesJsonSchemaInClasspath("GetCaseSchema.json"))
+           // assertThat().getInfoCaseResponseModel(matchesJsonSchemaInClasspath("GetCaseSchema.json"));
+           // TestBase.assertJsonSchema(getInfoCaseResponseModel, "createUserScheme.json");
+                }
         );
     }
 

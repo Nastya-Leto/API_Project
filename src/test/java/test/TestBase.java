@@ -2,7 +2,10 @@ package test;
 
 import com.codeborne.selenide.Configuration;
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
+
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class TestBase {
 
@@ -20,6 +23,11 @@ public class TestBase {
 
     public String nameSections = "Авторизация";
     public String DescriptionSections = "Проверка авторизации";
+
+    /*public static void assertJsonSchema(Response Response, String jsonSchema) {
+        Response.then().assertThat().body(matchesJsonSchemaInClasspath("schemes/" + jsonSchema));
+    }*/
+
     @BeforeAll
     static void setUp() {
 

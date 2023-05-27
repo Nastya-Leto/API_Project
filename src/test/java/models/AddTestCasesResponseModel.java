@@ -11,7 +11,6 @@ import java.util.List;
 public class AddTestCasesResponseModel {
 
     String title,refs;
-    Timespan created_o;
     Integer id,section_id,template_id,type_id
             ,priority_id,milestone_id,created_by;
 

@@ -1,224 +1,150 @@
-# UI и API автотесты для веб-приложения [TestRail](https://www.testrail.com/) — инструмента управления тест-кейсами.
-<img alt="GIPHY" src="/media/icons/LogotipTestRail.png">
+
+<h1 >Проект автоматизации тестирования UI для сайта <a href="https://store.steampowered.com/ ">Steam</a></h1>
+
+![Steam_logo.svg.png](media/logo/LogotipTestRail.png)
+
+## :bookmark_tabs: Содержание
+
+* <a href="#tools">Технологии и инструменты</a>
+
+* <a href="#cases">Реализованные проверки</a>
+
+* <a href="#console">Запуск тестов из терминала</a>
+
+* <a href="#jenkins">Запуск тестов в Jenkins</a>
+
+* <a href="#allure">Отчеты в Allure Report</a>
+
+* <a href="#allure-testops">Интеграция с Allure TestOps</a>
+
+* <a href="#jira">Интеграция с Jira</a>
+
+* <a href="#telegram">Уведомления в Telegram с использованием бота</a>
+
+* <a href="#video">Пример прогона теста в Selenoid</a>
+
+<a id="tools"></a>
+## Технологии и инструменты
+
+| Java                                                                                                    | IntelliJ Idea                                                                                                                | GitHub                                                                                                    | JUnit 5                                                                                                          | Gradle                                                                                                    | Selenide                                                                                                        | Selenoid                                                                                                                 |                                                                                                         Jenkins |
+|:--------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------:|
+| <a href="https://www.java.com/"><img src="media/logo/Java.svg" width="50" height="50"  alt="Java"/></a> | <a id ="tech" href="https://www.jetbrains.com/idea/"><img src="media/logo/Idea.svg" width="50" height="50"  alt="IDEA"/></a> | <a href="https://github.com/"><img src="media/logo/GitHub.svg" width="50" height="50"  alt="Github"/></a> | <a href="https://junit.org/junit5/"><img src="media/logo/Junit5.svg" width="50" height="50"  alt="JUnit 5"/></a> | <a href="https://gradle.org/"><img src="media/logo/Gradle.svg" width="50" height="50"  alt="Gradle"/></a> | <a href="https://selenide.org/"><img src="media/logo/Selenide.svg" width="50" height="50"  alt="Selenide"/></a> | <a href="https://aerokube.com/selenoid/"><img src="media/logo/Selenoid.svg" width="50" height="50"  alt="Selenoid"/></a> | <a href="https://www.jenkins.io/"><img src="media/logo/Jenkins.svg" width="50" height="50"  alt="Jenkins"/></a> |
 
 
-# <a name="TableOfContents">Содержание страницы</a>
-+ [:trophy: Инструменты и технологии](#ToolsAndTechnologies)
-+ [Описаниe](#Description)
+| Jira                                                                                                                         | Allure                                                                                                                    | Allure TestOps                                                                                                      |
+|:-----------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| <a href="https://www.atlassian.com/ru/software/jira"><img src="media/logo/Jira.svg" width="50" height="50"  alt="Jira"/></a> | <a href="https://github.com/allure-framework"><img src="media/logo/Allure.svg" width="50" height="50"  alt="Allure"/></a> | <a href="https://qameta.io/"><img src="media/logo/Allure_TO.svg" width="50" height="50"  alt="Allure TestOps"/></a> |
 
-+ [Проект](#Project)
-+ [:heavy_check_mark:  Реализованные проверки:](#ImplementedСhecks)
-    - <a href="#cases-ui"> UI
-    - <a href="#cases-api"> API
-    - <a href="#cases-mobile"> Mobile
-+ [👷‍♂️ Сборка в Jenkins](#Build_in_Jenkins)
-+ [:clipboard: Параметры сборки в Jenkins:](#Build_Parameters_in_Jenkins)
-+ [:computer: Запуск из терминала](#Launch_from_terminal)
-    - <a href="#console-ui"> UI
-    - <a href="#console-api"> API
-    - <a href="#console-mobile"> Mobile
-+ [:chart_with_downwards_trend: Allure отчет](#Allure_report)
-    + [Главный экран отчета](#Allure_report1)
-    + [Страница с проведенными тестами](#Allure_report2)
-+ [:bar_chart: Интеграция с Allure TestOps](#Integration_Allure_TestOps)
-    + [Экран с результатами запуска тестов](#Интеграция_с_Allure_TestOps1)
-    + [Страница с тестами в TestOps](#Интеграция_с_Allure_TestOps2)
-+ [:bar_chart: Примеры сборок в Brawserstack](#Integration_Brawserstack)
-    + [Экран с результатами запуска тестов](#Integration_Brawserstack)
-+ [:chart_with_upwards_trend: Интеграция с Jira](#Integration_Jira)
-+ [Страница с задачей в Jira](#Page_Jira)
-+ [:iphone: Отчет в Telegram](#Telegram)
-+ [:movie_camera: Видео примеры прохождения тестов](#Video)
-    + [Пример запуска тестов через selenoid](#Video1)
-    + [Пример запуска тестов через brawserstack](#Video2)
+<a id="cases"></a>
+## :ballot_box_with_check: Реализованные проверки
 
-<a name="ToolsAndTechnologies"><h2>:trophy: Инструменты и технологии</h2></a>
-<p  align="center">
-  <a href="https://www.jetbrains.com/idea/"><code><img width="5%" title="IntelliJ IDEA" src="/design/icons/Intelij_IDEA.svg"></code></a>
-  <a href="https://www.java.com/"><code><img width="5%" title="Java" src="/design/icons/Java.svg"></code></a>
-  <a href="https://selenide.org/"></a><code><img width="5%" title="Selenide" src="/design/icons/Selenide.svg"></code></a>
-  <a href="https://aerokube.com/selenoid/"><code><img width="5%" title="Selenoid" src="/design/icons/Selenoid.svg"></code></a>
-  <a href="https://gradle.org/"><code><img width="5%" title="Gradle" src="/design/icons/Gradle.svg"></code></a>
-  <a href="https://junit.org/junit5/"><code><img width="5%" title="JUnit5" src="/design/icons/JUnit5.svg"></code></a>
-  <a href="https://docs.qameta.io/allure/"><code><img width="5%" title="Allure Report" src="/design/icons/Allure_Report.svg"></code></a>
-  <a href="https://qameta.io/"><code><img width="5%" title="Allure TestOps" src="/design/icons/AllureTestOps.svg"></code></a>
-  <a href="https://github.com/"><code><img width="5%" title="Github" src="/design/icons/GitHub.svg"></code></a>
-  <a href="https://git-scm.com/"><code><img width="5%" title="Github" src="/design/icons/Git.svg"></code></a>
-  <a href="https://www.jenkins.io/"><code><img width="5%" title="Jenkins" src="/design/icons/Jenkins.svg"></code></a>
-  <a href="https://www.atlassian.com/ru/software/jira"><code><img width="5%" title="Jira" src="/design/icons/Jira.svg"></code></a>
-  <a href="https://telegram.org/"><code><img width="5%" title="Telegram" src="/design/icons/Telegram.svg"></code></a>
-  <a href="https://rest-assured.io/"><code><img width="5%" title="REST-Assured" src="/design/icons/rest-assured-logo.svg"></code></a>
-  <a href="https://www.browserstack.com/"><code><img width="5%" title="Browserstack" src="/design/icons/Browserstack.svg"></code></a>
-  <a href="https://appium.io/"><code><img width="5%" title="Appium" src="/design/icons/Appium.svg"></code></a>
-  <a href="https://developer.android.com/studio"><code><img width="5%" title="Android_Studio" src="https://upload.wikimedia.org/wikipedia/commons/9/95/Android_Studio_Icon_3.6.svg"></code></a>
+- :small_blue_diamond: Параметризованный тест смены языка на русский, итальянский, немецкий
+- :small_blue_diamond: Проверка результатов поисковой выдачи на главной странице
+- :small_blue_diamond: Проверка содержимого хедер меню
+- :small_blue_diamond: Проверка поиска пользователей (друзей)
+- :small_blue_diamond: Проверка наличия поля поиска при выборе категории в меню Поддержка
+- :small_blue_diamond: Добавление игры в корзину
+- :small_blue_diamond: Удаление игры из корзины
+
+<a id="console"></a>
+## :computer: Запуск тестов из терминала
+### Локальный запуск тестов
+
+```
+gradle clean test 
+```
+
+### Удаленный запуск тестов
+
+```
+gradle clean test 
+"-Dbrowser=${BROWSER}" 
+"-DbrowserVersion=${BROWSER_VERSION}" 
+"-DbrowserSize=${BROWSER_SIZE}" 
+"-DremoteUrl=${REMOTE_URL}"
+```
+
+> `${BROWSER}` - наименование браузера (_по умолчанию - <code>chrome</code>_).
+>
+> `${BROWSER_VERSION}` - версия браузера (_по умолчанию - <code>100.0</code>_).
+>
+> `${BROWSER_SIZE}` - размер окна браузера (_по умолчанию - <code>1920x1080</code>_).
+>
+> `${REMOTE_URL}` - адрес удаленного сервера, на котором будут запускаться тесты.
+
+<a id="jenkins"></a>
+## <img src="media/logo/Jenkins.svg" width="25" height="25"/></a> Запуск тестов в Jenkins
+
+<a target="_blank" href="https://jenkins.autotests.cloud/job/18-johnnyhlammaster-steamUiProject
+/">Сборка в Jenkins</a>
+<p align="center">
+
+<a href="https://jenkins.autotests.cloud/job/AD_demo_ui_steam/"><img src="media/screenshots/jenkins.jpg" alt="Jenkins"/></a>
+
+> Сборка с параметрами позволяет перед запуском изменить параметры для сборки (путем выбора из списка или прямым указанием значения).
+> Клик по иконкам Allure TestOps и Allure Report позволяет перейти на просмотр страниц с тестовой документацией и отчетов.
+
+<a href="https://jenkins.autotests.cloud/job/AD_demo_ui_steam/"><img src="media/screenshots/param.png" alt="Jenkins"/></a>
 </p>
 
-<a name="Description"><h2>Описаниe</h2></a>
-Автотесты в этом проекте написаны на `Java` с использованием `Selenide`.\
-`Gradle` - для автоматической системы сборки.  \
-`JUnit5` - для модульного тестирования.\
-`Jenkins` - CI/CD для удаленного запуска тестов.\
-`Selenoid` - для удаленного запуска браузеров в `Docker` контейнере.\
-`Allure Report` - для визуализации результатов тестирования.\
-`Telegram Bot` - для уведомлений о результатах тестирования.\
-`Allure TestOps` - система управления тестированием
-`Rest Assured` - выполняет роль обёртки над http клиентом
-`Appium` - используются для управления мобильным устройством с помощью веб драйвера
-`Browserstack` - для удаленного запуска мобильных автотестов
-`Android_Studio` - для эмулятора мобильного устройства и получения данных для подключения к apk
-.
+<a id="allure"></a>
+## <img src="media/logo/Allure.svg" width="25" height="25"/></a> Отчеты в [Allure Report](https://jenkins.autotests.cloud/job/18-johnnyhlammaster-steamUiProject/20/allure/)
 
-<a name="Project"><h2>Проект</h2></a>
-<a href="https://store.steampowered.com/"><code><img width="5%" title="Steam" src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg"></code></a> Проект по автоматизации тестирования для Steam, — онлайн-сервис цифрового распространения компьютерных игр и программ :star2:
+### Основное окно
 
-<a name="ImplementedСhecks"><h2>:heavy_check_mark:  Реализованные проверки:</h2></a>
-<a id="cases-ui"></a>UI-кейсы:
-:heavy_check_mark: Авторизация на сайте</br>
+<p align="center">
+<img title="Allure Overview Dashboard" src="media/screenshots/alluremain.jpg">
+</p>
 
-:heavy_check_mark: Наличия раздела игр из категории 'Выживание'</br>
+### Тесты
 
-:heavy_check_mark: Наличие рекомендаций в Активности сообщества</br>
+>К каждой проверке прилагается скриншот страницы последнего действия в тесте, логи и видео.
 
-:heavy_check_mark: Поиск игр</br>
+<p align="center">
+<img title="Allure Tests" src="media/screenshots/allure2.jpg">
+</p>
 
-:heavy_check_mark: Добавление игры в корзину</br>
+<a id="allure-testops"></a>
+## <img src="media/logo/Allure_TO.svg" width="25" height="25"/></a> Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/2296/dashboards)
 
-:heavy_check_mark: Удаление игры из корзину</br>
+>Интеграция Allure TestOps с Jenkins позволяет запускать несколько выборочных тестов и следить за их выполнением в онлайн формате.
 
-<a id="cases-api"></a>API-кейсы:
+<p align="center">
+<img title="Allure TestOps" src="media/screenshots/photo_2023-05-24_15-30-17.jpg">
+</p>
 
-:heavy_check_mark: Открытие раздела игр из категории 'Выживание'</br>
+>Прохождения тестов можно представить ввиде графиков.
 
-:heavy_check_mark: Поиск игр</br>
+<p align="center">
+<img title="Allure TestOps" src="media/screenshots/dashboard.jpg">
+</p>
 
-:heavy_check_mark: Добавление игры в корзину</br>
+>Кейсы находятся в актуальном состоянии, поскольку сценарии выгружаются из кода.
 
-:heavy_check_mark: Проверка доступа</br>
+<p align="center">
+<img title="Allure TestOps" src="media/screenshots/testk.jpg">
+</p>
 
-<a id="cases-mobile"></a>Mobile-кейсы:
+<a id="jira"></a>
+## <img src="media/logo/Jira.svg" width="25" height="25"/></a> Интеграция с [Jira](https://jira.autotests.cloud/browse/HOMEWORK-552)
 
-:heavy_check_mark: Авторизация в приложении</br>
+### Связка Jira и Allure TestOps
+<p align="center">
+<img title="Jira" src="media/screenshots/jira2.jpg">
+</p>
 
-:heavy_check_mark: Поиск игр</br>
 
-:heavy_check_mark: Добавление игры в корзину</br>
+<a id="telegram"></a>
+## <img src="media/logo/Telegram.svg" width="25" height="25"/></a> Уведомления в Telegram с использованием бота
 
-:heavy_check_mark: Удаление игры из корзину</br>
+<p >
+<img title="telegram bot" src="media/screenshots/tele.jpg">
+</p>
 
+<a id="video"></a>
+## <img src="media/logo/Selenoid.svg" width="25" height="25"/></a> Пример прогона теста в Selenoid
 
-
-<a name="Build_in_Jenkins" href="https://jenkins.autotests.cloud/job/SteamProject/"><h2>👷‍♂️ Сборки в [Jenkins](https://jenkins.autotests.cloud/job/DiplomaSteam/)<h2></a>
-
-
-![This is an image](design/pictures/jenkins1.png)
-
-![This is an image](design/pictures/jenkins2.png)
-
-
-<a name="Build_Parameters_in_Jenkins"><h2>:clipboard: Параметры сборки в Jenkins:</h2></a>
-
-Сборка в Jenkins
-
-- BROWSER (браузер, по умолчанию chrome)
-
-- BROWSER_VERSION (версия браузера, по умолчанию 100.0)
-
-- BROWSER_SIZE (размер окна браузера, по умолчанию 2500х1080)
-
-- BASEURL (какой адрес открывать для запуска тестов)
-
-- SELENOID_URL (где запускать тесты)
-
-- TASK (с какими тегами запускать тесты)
-
-
-<a name="Launch_from_terminal"><h2>:computer: Запуск из терминала</h2></a>
-### <a id="console-ui"></a>Локальный запуск UI-тестов
-
-```
-gradle clean steamUI
-```
-
-### <a id="console-api"></a>Локальный запуск API-тестов
-
-```
-gradle clean steamApi
-```
-
-### <a id="console-mobile"></a>Локальный запуск Mobile-тестов
-
-```
-gradle clean steamMobile
-```
-
-Удаленный запуск:
-
-```
-clean
-${TASK}
--Dbrowser=${BROWSER}
--Dbrowser_version=${BROWSER_VERSION}
--Dbrowser_size=${BROWSER_SIZE}
--Dbaseurl=${BASEURL}
--Dselenoid_url=${SELENOID_URL}
-```
-<a name="Allure_report"><h2>:chart_with_downwards_trend: [Allure](https://jenkins.autotests.cloud/job/DiplomaSteam/23/allure/) отчет</h2></a>
-
-- <a name="Allure_report1"><h3>Главный экран отчета</h3></a>
-
-![This is an image](design/pictures/allure.png)
-
--  <a name="Allure_report2"><h3>Страница с проведенными тестами</h3></a>
-
-![This is an image](design/pictures/allure1.png)
-
-<a name="Integration_Allure_TestOps"><h2>:bar_chart: Интеграция с Allure [TestOps](https://allure.autotests.cloud/launch/24091)</h2></a>
-
-- <a name="Integration_Allure_TestOps1"><h3>Экран с результатами запуска тестов</h3></a>
-
-![This is an image](design/pictures/allureTestsOp.png)
-
-
-- <a name="Integration_Allure_TestOps2"><h3>Страница с тестами в [TestOps](https://allure.autotests.cloud/launch/24091/tree?treeId=4235)</h3></a>
-
-![This is an image](design/pictures/allureTestsOp1.png)
-
-<a name="Integration_Brawserstack"><h2>:bar_chart: Примеры сборок в [Brawserstack](https://app-automate.browserstack.com/dashboard/v2/builds/6ce43e9d8252a282c5b3227aae9b96b0e0529f3d/sessions/74f9e6147da1a2ba8a56923f860b620fc5fe401a)</h2></a>
-
-- <a name="Integration_Brawserstack"><h3>Экран с результатами запуска тестов</h3></a>
-
-![This is an image](design/pictures/Brawserstack.png)
-
-<a name="Integration_Jira"><h2>:chart_with_upwards_trend: Интеграция с Jira</h2></a>
-
-- <a name="Page_Jira"><h3>Страница с задачей в [Jira](https://jira.autotests.cloud/browse/HOMEWORK-675)<h3></a>
-
-![This is an image](design/pictures/jira_task.png)
-
-<a name="Telegram"><h2>:iphone: Отчет в Telegram</h2></a>
-
-![This is an image](design/pictures/telegram.png)
-
-<a name="Video"><h2>:movie_camera: Видео примеры прохождения тестов</h2></a>
-
-- <a name="Video1"><h3>Пример запуска тестов через selenoid</h3></a>
-
-https://github.com/KatasonovaMasa/Steam/assets/44576709/127ae60c-9c68-4e27-9f70-06c7aef69da7
-
-- <a name="Video2"><h3>Пример запуска тестов через brawserstack</h3></a>
-
-https://github.com/KatasonovaMasa/Steam/assets/44576709/60e3ac76-b146-41d5-b8e5-f1bcb075ae5e
-
-
-:heart: <a target="_blank" href="https://qa.guru">qa.guru</a><br/>
-
-:blue_heart: <a target="_blank" href="https://t.me/qa_automation">t.me/qa_automation</a>
-
-
-
-
-
-  
-
-  
-  
+> Видео к прохождению теста "Добавление игры в корзину".
+<p align="center">
+  <img title="Selenoid Video" src="media/video/d879d2ab0c4ea4a2f7871c48c2b2df0b.gif">
+</p>

@@ -1,10 +1,12 @@
 package test.API;
 
 
+import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Owner;
+import io.qameta.allure.selenide.AllureSelenide;
 import models.*;
 import org.junit.jupiter.api.*;
-import test.TestBase;
+import test.TestDataAPI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +19,12 @@ import static specs.Specification.requestSpec;
 import static specs.Specification.responseSpec;
 
 @DisplayName("API тесты")
-public class TestRailTests extends TestBase {
+public class TestRailTests extends TestDataAPI {
 
+    @BeforeEach //убрать
+    void addListener() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+    }
 
     @Test
     @Tags({
@@ -30,8 +36,8 @@ public class TestRailTests extends TestBase {
     void AddProject() {
 
         AddProjectRequestModel addProjectRequestBody = new AddProjectRequestModel();
-        addProjectRequestBody.setName(nameProject);
-        addProjectRequestBody.setAnnouncement(announcementProject);
+        addProjectRequestBody.setName("name");
+        addProjectRequestBody.setAnnouncement("announcementProject");
         addProjectRequestBody.setShow_announcement(true);
 
         AddProjectResponseModel addProjectResponseModel = step("Создание нового проекта", () ->
@@ -47,8 +53,8 @@ public class TestRailTests extends TestBase {
         );
 
         step("Проверка успешного создания проекта", () -> {
-                    assertThat(addProjectResponseModel.getName()).isEqualTo(nameProject);
-                    assertThat(addProjectResponseModel.getAnnouncement()).isEqualTo(announcementProject);
+                    assertThat(addProjectResponseModel.getName()).isEqualTo("name");
+                    assertThat(addProjectResponseModel.getAnnouncement()).isEqualTo("announcementProject");
                 }
         );
     }

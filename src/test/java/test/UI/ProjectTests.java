@@ -25,6 +25,7 @@ public class ProjectTests extends TestBase {
         $("#sidebar-projects-add").click();
         $("#name").setValue(nameProject);
         $("#announcement").setValue(announcementProject);
+        $("#suite_mode_multi").click();
         $("#accept").click();
     }
 
@@ -53,21 +54,6 @@ public class ProjectTests extends TestBase {
     }
 
     @Test
-    @Disabled
-    void addingNewSuitesInProject() {
-
-        open(baseUrl);
-        $("#name").setValue("zakharova.an.an@yandex.ru");
-        $("#password").setValue("Yfcnz123**");
-        $("#button_primary").click();
-        $(".summary-links").$(byText("Test Suites")).click();
-        $("#navigation-suites-add").click();
-        $("#name").setValue(nameSuite);
-        $("#description_display").setValue(nameDescription);
-        $("#accept").click();
-    }
-
-    @Test
     void addingNewRunsInProject() {
 
         open(baseUrl);
@@ -76,6 +62,7 @@ public class ProjectTests extends TestBase {
         $("#button_primary").click();
         $(".summary-links").$(byText("Test Runs")).click();
         $("#navigation-runs-add").click();
+        $(".button-group").$(byText("OK")).click();
         $("#name").clear();
         $("#name").setValue(nameRuns);
         $("#refs").setValue("текст");

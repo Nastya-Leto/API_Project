@@ -19,7 +19,9 @@ import static specs.Specification.requestSpec;
 import static specs.Specification.responseSpec;
 
 @DisplayName("API тесты")
-public class TestRailTests extends TestDataAPI {
+public class TestRailTests {
+
+    TestDataAPI testDataAPI = new TestDataAPI();
 
     @BeforeEach //убрать
     void addListener() {
@@ -36,8 +38,8 @@ public class TestRailTests extends TestDataAPI {
     void AddProject() {
 
         AddProjectRequestModel addProjectRequestBody = new AddProjectRequestModel();
-        addProjectRequestBody.setName("name");
-        addProjectRequestBody.setAnnouncement("announcementProject");
+        addProjectRequestBody.setName(testDataAPI.nameProjectApi);
+        addProjectRequestBody.setAnnouncement(testDataAPI.announcementProjectApi);
         addProjectRequestBody.setShow_announcement(true);
 
         AddProjectResponseModel addProjectResponseModel = step("Создание нового проекта", () ->
@@ -53,8 +55,8 @@ public class TestRailTests extends TestDataAPI {
         );
 
         step("Проверка успешного создания проекта", () -> {
-                    assertThat(addProjectResponseModel.getName()).isEqualTo("name");
-                    assertThat(addProjectResponseModel.getAnnouncement()).isEqualTo("announcementProject");
+                    assertThat(addProjectResponseModel.getName()).isEqualTo(testDataAPI.nameProjectApi);
+                    assertThat(addProjectResponseModel.getAnnouncement()).isEqualTo(testDataAPI.announcementProjectApi);
                 }
         );
     }
@@ -70,9 +72,9 @@ public class TestRailTests extends TestDataAPI {
     void AddSuite() {
 
         AddSuiteRequestModel addSuiteRequestModelBody = new AddSuiteRequestModel();
-        addSuiteRequestModelBody.setName(nameSuite);
-        addSuiteRequestModelBody.setDescription(nameDescription);
-        String addSuiteUrl = format("/api/v2/add_suite/%s", projectId);
+        addSuiteRequestModelBody.setName(testDataAPI.nameSuite);
+        addSuiteRequestModelBody.setDescription(testDataAPI.nameDescription);
+        String addSuiteUrl = format("/api/v2/add_suite/%s", testDataAPI.projectId);
 
         AddSuiteResponseModel addSuiteResponseModel = step("Создание тестового набора", () ->
                 given(requestSpec)
@@ -87,8 +89,8 @@ public class TestRailTests extends TestDataAPI {
         );
 
         step("Проверка успешного создания тестового набора", () -> {
-                    assertThat(addSuiteResponseModel.getName()).isEqualTo(nameSuite);
-                    assertThat(addSuiteResponseModel.getDescription()).isEqualTo(nameDescription);
+                    assertThat(addSuiteResponseModel.getName()).isEqualTo(testDataAPI.nameSuite);
+                    assertThat(addSuiteResponseModel.getDescription()).isEqualTo(testDataAPI.nameDescription);
                 }
         );
     }
@@ -102,12 +104,12 @@ public class TestRailTests extends TestDataAPI {
     @DisplayName("Получение списка разделов")
     void GetSections() {
 
-        String getSectionsURL = format("/api/v2/get_sections/%s", projectId);
+        String getSectionsURL = format("/api/v2/get_sections/%s", testDataAPI.projectId);
 
         GetSectionsResponseModel getSectionsResponseModel = step("Получить список разделов", () ->
                 given(requestSpec)
                         .queryParam(getSectionsURL)
-                        .queryParam("suite_id", suiteId)
+                        .queryParam("suite_id", testDataAPI.suiteId)
                         .when()
                         .get()
                         .then()
@@ -135,12 +137,12 @@ public class TestRailTests extends TestDataAPI {
     void AddTestCases() {
 
         AddTestCasesRequestModel.ListStepsData step = new AddTestCasesRequestModel.ListStepsData();
-        step.setContent(stepContent);
-        step.setExpected(stepExpected);
+        step.setContent(testDataAPI.stepContent);
+        step.setExpected(testDataAPI.stepExpected);
 
         AddTestCasesRequestModel addTestCasesRequestModelBody = new AddTestCasesRequestModel();
-        addTestCasesRequestModelBody.setTitle(stepTitle);
-        addTestCasesRequestModelBody.setSection_id(sectionId);
+        addTestCasesRequestModelBody.setTitle(testDataAPI.stepTitle);
+        addTestCasesRequestModelBody.setSection_id(testDataAPI.sectionId);
         addTestCasesRequestModelBody.setTemplate_id(1);
         addTestCasesRequestModelBody.setType_id(9);
         addTestCasesRequestModelBody.setPriority_id(2);
@@ -148,7 +150,7 @@ public class TestRailTests extends TestDataAPI {
         steps.add(step);
         addTestCasesRequestModelBody.setCustom_steps_separated(steps);
 
-        String addTestCasesUrl = format("/api/v2/add_case/%s" ,sectionId);
+        String addTestCasesUrl = format("/api/v2/add_case/%s" ,testDataAPI.sectionId);
 
         AddTestCasesResponseModel addTestCasesResponseModel = step("Создание тест кейса", () ->
                 given(requestSpec)
@@ -174,12 +176,12 @@ public class TestRailTests extends TestDataAPI {
     @DisplayName("Получение списка тест-кейсов")
     void GetCases() {
 
-        String getCaseURL = format("/api/v2/get_cases/%s", projectId);
+        String getCaseURL = format("/api/v2/get_cases/%s", testDataAPI.projectId);
 
         GetListCasesResponseModel getListCaseResponseModel = step("Создание тест кейса", () ->
                 given(requestSpec)
                         .queryParam(getCaseURL)
-                        .queryParam("suite_id", suiteId)
+                        .queryParam("suite_id", testDataAPI.suiteId)
                         .when()
                         .get()
                         .then()

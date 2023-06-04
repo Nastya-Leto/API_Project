@@ -6,13 +6,16 @@ import com.github.javafaker.Faker;
 public class TestDataAPI {
     Faker faker = new Faker();
 
-    public String nameSuite = faker.rickAndMorty().quote(),
-            stepContent = faker.rickAndMorty().quote(),
-            stepExpected = faker.rickAndMorty().quote(),
-            stepTitle = faker.rickAndMorty().quote(),
-            nameDescription= faker.rickAndMorty().quote();
+    public String nameSuite = faker.gameOfThrones().house(),
+            stepContent = faker.gameOfThrones().dragon(),
+            stepExpected = faker.gameOfThrones().city(),
+            stepTitle = faker.gameOfThrones().quote(),
+            nameDescription= faker.gameOfThrones().dragon(),
+            nameProjectApi = faker.gameOfThrones().dragon(),
+            announcementProjectApi = faker.gameOfThrones().character();
 
-    public Integer   sectionId = 1,
-            projectId = 17,
-            suiteId = 12;
+
+    public Integer   sectionId = 2,
+            projectId = 35,
+            suiteId = 19;
 }

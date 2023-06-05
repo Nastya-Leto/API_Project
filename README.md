@@ -75,7 +75,7 @@ gradle clean test
 <a id="jenkins"></a>
 ## <img src="media/logo/Jenkins.svg" width="25" height="25"/></a> Запуск тестов в Jenkins
 
-<a target="_blank" href="https://jenkins.autotests.cloud/job/18-johnnyhlammaster-steamUiProject
+<a target="_blank" href="https://jenkins.autotests.cloud/job/Nastya-Leto_API_Project/
 /">Сборка в Jenkins</a>
 <p align="center">
 

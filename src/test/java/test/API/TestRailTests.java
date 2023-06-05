@@ -23,7 +23,8 @@ public class TestRailTests {
 
     TestDataAPI testDataAPI = new TestDataAPI();
 
-    @BeforeEach //убрать
+    @BeforeEach
+        //убрать
     void addListener() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
@@ -150,7 +151,7 @@ public class TestRailTests {
         steps.add(step);
         addTestCasesRequestModelBody.setCustom_steps_separated(steps);
 
-        String addTestCasesUrl = format("/api/v2/add_case/%s" ,testDataAPI.sectionId);
+        String addTestCasesUrl = format("/api/v2/add_case/%s", testDataAPI.sectionId);
 
         AddTestCasesResponseModel addTestCasesResponseModel = step("Создание тест кейса", () ->
                 given(requestSpec)
@@ -164,10 +165,16 @@ public class TestRailTests {
 
         );
 
+        step("Проверка, что тест-кейс создан", () -> {
+
+                    assertThat(addTestCasesResponseModel.getTitle()).isEqualTo(testDataAPI.stepTitle);
+
+                }
+        );
+
     }
 
     @Test
-    @Order(6)
     @Tags({
             @Tag("API"),
             @Tag("Story")

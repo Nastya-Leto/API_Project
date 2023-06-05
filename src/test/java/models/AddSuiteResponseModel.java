@@ -11,8 +11,4 @@ public class AddSuiteResponseModel {
     String name,description,url;
     Integer id, project_id;
 
-
-
-
-
 }

@@ -25,16 +25,8 @@ public class AuthorizationTests extends TestBase {
     @Owner("ZakharovaAA")
     void loginTest() {
 
-        step("Авторизация", () -> {
-
-
-            loginComponent.setCredentials();
-        });
-
-        step("Проверка успешной авторизации", () -> {
-
-            authorizationPages.checkHaveUserName();
-        });
+        step("Авторизация", () -> loginComponent.setCredentials());
+        step("Проверка успешной авторизации", () -> authorizationPages.checkHaveUserName());
     }
 
     @Test
@@ -46,19 +38,9 @@ public class AuthorizationTests extends TestBase {
     @Owner("ZakharovaAA")
     void logoutTest() {
 
-        step("Авторизация", () -> {
+        step("Авторизация", () -> loginComponent.setCredentials());
+        step("Выход из аккаунта", () -> authorizationPages.logout());
+        step("Проверка выходы из аккаунта", () -> authorizationPages.checkLogout());
 
-            loginComponent.setCredentials();
-        });
-
-        step("Выход из аккаунта", () ->
-        {
-            authorizationPages.logout();
-        });
-
-        step("Проверка выходы из аккаунта", () -> {
-
-            authorizationPages.checkLogout();
-        });
     }
 }

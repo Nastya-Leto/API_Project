@@ -1,6 +1,9 @@
 package test.UI;
 
-import com.codeborne.selenide.Condition;
+import io.qameta.allure.Owner;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import pages.CreateNewUserPages;
 import pages.components.AuthorizationComponent;
@@ -15,20 +18,16 @@ public class CreateNewUserTest extends TestBase {
     CreateNewUserPages createNewUserPages = new CreateNewUserPages();
 
     @Test
+    @DisplayName("Проверка создания нового пользователя")
+    @Tags({
+            @Tag("WEB"),
+            @Tag("Story")
+    })
+    @Owner("ZakharovaAA")
     void createNewUser() {
 
-
-        step("Авторизация", () -> {
-            loginComponent.setCredentials();
-        });
-
-        step("Создание нового пользователя", () -> {
-            createNewUserPages.createNewUser();
-        });
-
-        step("Проверка успешного создания пользователя", () -> {
-            createNewUserPages.checkCreateNewUser();
-        });
+        step("Авторизация", () -> loginComponent.setCredentials());
+        step("Создание нового пользователя", () -> createNewUserPages.createNewUser());
+        step("Проверка успешного создания пользователя", () -> createNewUserPages.checkCreateNewUser());
     }
-
 }

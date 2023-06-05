@@ -105,19 +105,14 @@ gradle clean test
 </p>
 
 <a id="allure-testops"></a>
-## <img src="media/logo/Allure_TO.svg" width="25" height="25"/></a> Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/2296/dashboards)
+## <img src="media/logo/Allure_TO.svg" width="25" height="25"/></a> Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/2251/dashboards)
 
 >Интеграция Allure TestOps с Jenkins позволяет запускать несколько выборочных тестов и следить за их выполнением в онлайн формате.
 
 <p align="center">
-<img title="Allure TestOps" src="media/screenshots/photo_2023-05-24_15-30-17.jpg">
+<img title="Allure TestOps" src="media/screenshots/run.jpg">
 </p>
 
->Прохождения тестов можно представить ввиде графиков.
-
-<p align="center">
-<img title="Allure TestOps" src="media/screenshots/dashboard.jpg">
-</p>
 
 >Кейсы находятся в актуальном состоянии, поскольку сценарии выгружаются из кода.
 
@@ -126,7 +121,7 @@ gradle clean test
 </p>
 
 <a id="jira"></a>
-## <img src="media/logo/Jira.svg" width="25" height="25"/></a> Интеграция с [Jira](https://jira.autotests.cloud/browse/HOMEWORK-552)
+## <img src="media/logo/Jira.svg" width="25" height="25"/></a> Интеграция с [Jira](https://jira.autotests.cloud/browse/HOMEWORK-739)
 
 ### Связка Jira и Allure TestOps
 <p align="center">
@@ -146,5 +141,5 @@ gradle clean test
 
 > Видео к прохождению теста "Добавление игры в корзину".
 <p align="center">
-  <img title="Selenoid Video" src="media/video/d879d2ab0c4ea4a2f7871c48c2b2df0b.gif">
+  <img title="Selenoid Video" src="media/video/update.gif">
 </p>

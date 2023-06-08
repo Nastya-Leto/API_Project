@@ -38,13 +38,20 @@
 <a id="cases"></a>
 ## :ballot_box_with_check: Реализованные проверки
 
-- :small_blue_diamond: Параметризованный тест смены языка на русский, итальянский, немецкий
-- :small_blue_diamond: Проверка результатов поисковой выдачи на главной странице
-- :small_blue_diamond: Проверка содержимого хедер меню
-- :small_blue_diamond: Проверка поиска пользователей (друзей)
-- :small_blue_diamond: Проверка наличия поля поиска при выборе категории в меню Поддержка
-- :small_blue_diamond: Добавление игры в корзину
-- :small_blue_diamond: Удаление игры из корзины
+### API
+- :small_blue_diamond: Проверка возможности создания нового проекта
+- :small_blue_diamond: Проверка возможности создания нового тестового набора в проекте
+- :small_blue_diamond: Получение списка разделов
+- :small_blue_diamond: Проверка возможности добавление нового тест-кейса"
+- :small_blue_diamond: Получение списка тест-кейсов
+- 
+### UI
+- :small_blue_diamond: Проверка авторизации
+- :small_blue_diamond: Проверка выхода из аккаунта
+- :small_blue_diamond: Проверка создания нового пользователя
+- :small_blue_diamond: Проверка возможности создания нового проекта
+- :small_blue_diamond: Проверка возможности редактирования проекта
+- :small_blue_diamond: Проверка возможности удаления проекта
 
 <a id="console"></a>
 ## :computer: Запуск тестов из терминала
@@ -53,24 +60,6 @@
 ```
 gradle clean test 
 ```
-
-### Удаленный запуск тестов
-
-```
-gradle clean test 
-"-Dbrowser=${BROWSER}" 
-"-DbrowserVersion=${BROWSER_VERSION}" 
-"-DbrowserSize=${BROWSER_SIZE}" 
-"-DremoteUrl=${REMOTE_URL}"
-```
-
-> `${BROWSER}` - наименование браузера (_по умолчанию - <code>chrome</code>_).
->
-> `${BROWSER_VERSION}` - версия браузера (_по умолчанию - <code>100.0</code>_).
->
-> `${BROWSER_SIZE}` - размер окна браузера (_по умолчанию - <code>1920x1080</code>_).
->
-> `${REMOTE_URL}` - адрес удаленного сервера, на котором будут запускаться тесты.
 
 <a id="jenkins"></a>
 ## <img src="media/logo/Jenkins.svg" width="25" height="25"/></a> Запуск тестов в Jenkins
@@ -81,14 +70,10 @@ gradle clean test
 
 <a href="https://jenkins.autotests.cloud/job/AD_demo_ui_steam/"><img src="media/screenshots/jenkins.jpg" alt="Jenkins"/></a>
 
-> Сборка с параметрами позволяет перед запуском изменить параметры для сборки (путем выбора из списка или прямым указанием значения).
-> Клик по иконкам Allure TestOps и Allure Report позволяет перейти на просмотр страниц с тестовой документацией и отчетов.
-
-<a href="https://jenkins.autotests.cloud/job/AD_demo_ui_steam/"><img src="media/screenshots/param.png" alt="Jenkins"/></a>
 </p>
 
 <a id="allure"></a>
-## <img src="media/logo/Allure.svg" width="25" height="25"/></a> Отчеты в [Allure Report](https://jenkins.autotests.cloud/job/18-johnnyhlammaster-steamUiProject/20/allure/)
+## <img src="media/logo/Allure.svg" width="25" height="25"/></a> Отчеты в [Allure Report](https://jenkins.autotests.cloud/job/Nastya-Leto_API_Project/6/allure/)
 
 ### Основное окно
 

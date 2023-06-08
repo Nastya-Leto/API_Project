@@ -53,7 +53,6 @@ dependencies {
             "com.github.javafaker:javafaker:1.0.2",
             "org.junit.jupiter:junit-jupiter:5.9.2",
             "org.aeonbits.owner:owner:1.0.12",
-            'com.googlecode.json-simple:json-simple:1.1.1',
             'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.15.2',
             "org.slf4j:slf4j-simple:$slf4jVersion"
     )
@@ -69,6 +68,7 @@ tasks.withType(Test) {
             exceptionFormat "short"
         }
     }
+
     test {
         useJUnitPlatform()
         systemProperties(System.getProperties())

@@ -24,7 +24,6 @@ public class TestRailTests {
     TestDataAPI testDataAPI = new TestDataAPI();
 
     @BeforeEach
-        //убрать
     void addListener() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }

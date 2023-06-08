@@ -9,9 +9,9 @@ import java.util.List;
 @Data
 public class AddTestCasesRequestModel {
 
-    String title,refs;
+    String title, refs;
     Timespan estimate;
-    Integer type_id, priority_id,template_id,section_id;
+    Integer type_id, priority_id, template_id, section_id;
     List<ListStepsData> custom_steps_separated;
 
     @Data

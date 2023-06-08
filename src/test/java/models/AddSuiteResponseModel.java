@@ -8,7 +8,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AddSuiteResponseModel {
 
-    String name,description,url;
+    String name, description, url;
     Integer id, project_id;
 
 }

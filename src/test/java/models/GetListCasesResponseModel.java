@@ -10,14 +10,10 @@ import java.sql.Timestamp;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetListCasesResponseModel {
 
-    String name,description,url;
+    String name, description, url;
     Integer suite_id, project_id;
 
-    Timestamp created_after,created_before;
-
-
-
-
+    Timestamp created_after, created_before;
 
 
 }

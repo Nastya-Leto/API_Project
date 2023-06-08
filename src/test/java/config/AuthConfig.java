@@ -20,6 +20,7 @@ public interface AuthConfig extends Config {
 
     @Key("tr_session")
     String tr_session();
+
     @Key("tr_rememberme")
     String tr_rememberme();
 

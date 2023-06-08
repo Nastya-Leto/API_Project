@@ -2,7 +2,6 @@
 package models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jdk.jfr.Timespan;
 import lombok.Data;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 public class GetSectionsResponseModel {
 
 
-    Integer offset, limit,size;
+    Integer offset, limit, size;
     List<GetSectionsResponseModel.ListSectionsData> sections;
 
     @Data
@@ -20,12 +19,10 @@ public class GetSectionsResponseModel {
     public static class ListSectionsData {
 
         private String name;
-        private Integer suite_id,id,depth,display_order;
+        private Integer suite_id, id, depth, display_order;
 
 
     }
-
-
 
 
 }

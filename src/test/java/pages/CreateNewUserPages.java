@@ -1,7 +1,6 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
-import test.TestBase;
 import test.TestDataUi;
 
 import static com.codeborne.selenide.Selectors.byText;

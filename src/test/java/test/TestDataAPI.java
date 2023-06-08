@@ -10,12 +10,12 @@ public class TestDataAPI {
             stepContent = faker.gameOfThrones().dragon(),
             stepExpected = faker.gameOfThrones().city(),
             stepTitle = faker.gameOfThrones().quote(),
-            nameDescription= faker.gameOfThrones().dragon(),
+            nameDescription = faker.gameOfThrones().dragon(),
             nameProjectApi = faker.gameOfThrones().dragon(),
             announcementProjectApi = faker.gameOfThrones().character();
 
 
-    public Integer   sectionId = 2,
+    public Integer sectionId = 2,
             projectId = 35,
             suiteId = 19;
 }

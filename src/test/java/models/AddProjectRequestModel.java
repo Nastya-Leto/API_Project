@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class AddProjectRequestModel {
 
-    String name,announcement;
+    String name, announcement;
     Boolean show_announcement;
 
 

@@ -59,9 +59,7 @@ public class ProjectPages extends TestBase {
     }
 
 
-
-
-    public void deleteProject () {
+    public void deleteProject() {
 
         $("#navigation-admin").click();
         $("#navigation-sub-projects").click();
@@ -71,7 +69,7 @@ public class ProjectPages extends TestBase {
 
     }
 
-    public void checkDeleteProject () {
+    public void checkDeleteProject() {
         $(byText("Successfully deleted the project.")).shouldBe(Condition.visible);
     }
 

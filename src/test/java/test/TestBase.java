@@ -34,9 +34,9 @@ public class TestBase {
     static void setUp() {
 
 
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        //Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         Configuration.holdBrowserOpen = true;
-        Configuration.baseUrl = "https://qaleto.testrail.io/index.php?/dashboard";
+        Configuration.baseUrl = "https://qanastyaleto.testrail.io/index.php?/dashboard";
         Configuration.browser = "chrome";
         Configuration.browserVersion = "100.0";
         Configuration.browserSize = "1680x1050";

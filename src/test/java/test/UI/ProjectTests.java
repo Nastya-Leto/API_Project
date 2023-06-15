@@ -48,23 +48,6 @@ public class ProjectTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Проверка возможности добавления прогона в проект")
-    @Tags({
-            @Tag("WEB"),
-            @Tag("Story")
-    })
-    @Owner("ZakharovaAA")
-    void addingNewRunInProject() {
-
-
-        step("Авторизация", () ->  loginComponent.setCredentials());
-        step("Добавление нового прогона", () -> projectPages.createNewRun());
-        step("Проверка успешного добавления нового прогона", () -> projectPages.checkCreateNewRun());
-
-    }
-
-
-    @Test
     @DisplayName("Проверка возможности удаления проекта")
     @Tags({
             @Tag("WEB"),

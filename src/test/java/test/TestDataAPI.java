@@ -16,6 +16,6 @@ public class TestDataAPI {
 
 
     public Integer sectionId = 2,
-            projectId = 35,
-            suiteId = 19;
+            projectId = 6,
+            suiteId = 3;
 }

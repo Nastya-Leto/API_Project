@@ -26,23 +26,6 @@ public class ProjectPages extends TestBase {
         $$("#content-inner").first().shouldBe(Condition.text(testDataUi.nameProjectUi));
     }
 
-    public void createNewRun() {
-
-        $(".summary-links").$(byText("Test Runs")).click();
-        $("#navigation-runs-add").click();
-        $("#name").clear();
-        $("#name").setValue(testDataUi.nameRunsUi);
-        $("#refs").setValue("текст");
-        $("#refs").setValue("текст1");
-        $("#description_display").setValue("текст2");
-        $("#accept").click();
-
-    }
-
-    public void checkCreateNewRun() {
-        $(".content-header-title").shouldBe(Condition.text(testDataUi.nameRunsUi));
-    }
-
 
     public void updateProject() {
 

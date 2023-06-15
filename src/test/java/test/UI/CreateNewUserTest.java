@@ -11,6 +11,7 @@ import test.TestBase;
 
 
 import static io.qameta.allure.Allure.step;
+
 @DisplayName("Проверка работы с пользователями")
 public class CreateNewUserTest extends TestBase {
 

@@ -15,7 +15,7 @@ public class Specification {
 
     public static RequestSpecification requestSpec = with()
             .filter(withCustomTemplates())
-            .baseUri("https://qaleto.testrail.io/index.php")
+            .baseUri("https://qanastyaleto.testrail.io/index.php")
             .cookies("recently_viewed_entities", Auth.config.recently_viewed_entities(),
                     "tr_session", Auth.config.tr_session(),
                     "tr_rememberme", Auth.config.tr_rememberme())
